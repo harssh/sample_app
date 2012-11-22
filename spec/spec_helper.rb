@@ -44,6 +44,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  
+  #below line is added to pass test with named paths
+  #config.include Rails.application.routes.url_helpers
 end
 
 end
