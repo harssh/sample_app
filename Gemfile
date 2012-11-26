@@ -3,10 +3,18 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.9'
  gem 'pg', '0.12.2'
  gem 'bootstrap-sass', '2.1'
+ gem 'bcrypt-ruby', '3.0.1'
  
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+
+group :development do
+  
+  gem 'annotate', '2.5.0'
+
+end
 
 group :development, :test do
 #gem 'sqlite3', '1.3.5'
