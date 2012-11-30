@@ -40,6 +40,7 @@ describe User do
       it { should be_admin }
       
     end
+     
      describe "when name is not present" do
        before { @user.name = " " }
        it { should_not be_valid }
@@ -49,7 +50,7 @@ describe User do
       describe "when email is not present" do
     before { @user.email = " " }
     it { should_not be_valid }
-  end
+      end
   
   describe "when name is too long" do
     before { @user.name = "a" * 51 }
@@ -156,5 +157,14 @@ end
     before { @user.save }
     its(:remember_token) { should_not be_blank }
   end
+  
+  
+  describe "admin attribute" do
+    it  "should not be accessible" do
+        expect do
+            @user.update_attributes(:admin => true)
+        end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
+end
   
  end
