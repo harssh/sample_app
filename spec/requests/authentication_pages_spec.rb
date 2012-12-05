@@ -44,6 +44,7 @@ describe "Authentication" do
       it { should have_link('Sign out', href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
       it { should have_link('Settings', href: edit_user_path(user)) }     
+      
               describe "followed by signout" do
             
                 before { click_link "Sign out"}
@@ -117,6 +118,17 @@ describe "Authentication" do
         end       
 
         
+        describe "visiting the following page" do
+          before { visit following_user_path(user) }
+          it { should have_selector('title', text: 'Sign in' ) }
+          
+        end
+        
+        describe "visiting the followers page " do
+          before {visit followers_user_path(user) }
+          it { should have_selector('title', text: 'Sign in') }
+        end
+        
       end  
       
       describe "in the microposts controller" do
@@ -131,9 +143,23 @@ describe "Authentication" do
           before { delete micropost_path(FactoryGirl.create(:micropost) ) }
           specify { response.should redirect_to(signin_path) }
         end
-      end              
-             end # end of non signed in users
+      end  
+      
+      describe "in the Relationship controller " do
+        describe "subnmitting to the create action" do
+          before { post relationships_path }
+          specify { response.should redirect_to(signin_path) }
           
-        end  # end of "authorization" do
+        end
+        
+        describe "submitting to the destroy action" do
+          before { delete relationship_path(1) }
+          specify { response.should redirect_to(signin_path) }
+        end
+      end     
+                  
+   end # end of non signed in users
+          
+ end  # end of "authorization" do
   
 end  # authentication end
