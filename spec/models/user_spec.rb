@@ -210,6 +210,20 @@ end
     end  # end of "should destroy associated microposts" do
     
     
+    
+    
+    
+    it "should destroy associated relationships" do
+    relation = @user.relationships.dup
+    @user.destroy
+    relation.should be_empty
+    
+    relation.each do |relationship|
+      Relationships.find_by_id(relationship.id).should be_nil
+             end  
+    end
+    
+    
     describe "status" do
       let(:unfollowed_post) do
         FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
