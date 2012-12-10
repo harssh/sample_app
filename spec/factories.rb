@@ -7,6 +7,7 @@ FactoryGirl.define do
      
      factory :admin do
        admin true
+       approved true
      end
    end
    

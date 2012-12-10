@@ -10,7 +10,7 @@ Feature: Request Account
 Scenario: User views home page
 
 When I visit home page
-Then I should see a "Sign up" button
+Then I should see a "Sign up" link
 
 
 Scenario: User view account request form
@@ -23,13 +23,7 @@ Scenario: User signs up with valid data
 
 When I request an account with valid user data
 Then I should see a message "Thank You"
-And my email address is stored
-And my account is not confirmed 
-And I should get email with subject "Request received"
 
 
-Scenario: User signs up with invalid email
 
-When I request an account with Invalid email
-Then I should see an invalid email msg
 
