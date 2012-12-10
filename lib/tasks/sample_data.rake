@@ -15,7 +15,10 @@ def make_users
   admin.toggle!(:admin)
   admin.toggle!(:approved)
   
- 99.times do |n|
+  siuser = User.create!(name: "Harssh",email: "harssh122@gmail.com",password: "123456",password_confirmation: "123456")
+   siuser.toggle!(:approved)
+  
+ 98.times do |n|
    name = Faker::Name.name
    email = "example-#{n+1}@railstutorial.org"
    password = "password"
